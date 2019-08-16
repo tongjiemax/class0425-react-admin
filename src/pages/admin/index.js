@@ -6,7 +6,8 @@ import './css.less';
 import logo from '../../assets/image/logo.png'
 //引入请求id合法的方法
 import { reqValidateUser } from '../../api/index';
-import NavLeft from '../../nav-left/NavLeft'
+import NavLeft from '../../nav-left/NavLeft';
+import HeaderMain from '../../nav-left/HeaderMain';
 //const应该放在import下面 语法规定
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -70,7 +71,9 @@ export default class Admin extends Component {
             </Sider>
             {/*左边导航部分Sider*/}
             <Layout>
-                <Header className="header"/>
+                <Header className="header">
+                    <HeaderMain />
+                </Header>
                 <Content style={{ margin: '0 16px' }}>
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
                 </Content>
