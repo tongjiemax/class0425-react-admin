@@ -5,7 +5,30 @@ import { menuList } from '../config/index'
 const { SubMenu } = Menu;
 const { Item } = Menu;
 class NavLeft extends Component {
+    constructor(props) {
+        super(props); // 必须声明prop，否则this.props就是undefined
+        //三级路由需要使用startsWith来进行判断
+        let { pathname } = this.props.location;
+        if (pathname.startsWith('/product')) {
+            pathname = '/product'
+        }
+        this.menus = this.createMenu(pathname);
+
+        this.state = {
+            selectedKey: ''
+        }
+    }
+    static getDerivedStateFromProps(nextProps) {
+        let { pathname } = nextProps.location;
+        if (pathname.startsWith('/product')) {
+            pathname = '/product'
+        }
+        return {
+            selectedKey: pathname
+        }
+    }
     createList = (menu) => {
+        console.log(menu);
         return <Item key={menu.key}>
             <Link to={menu.key}>
                 <Icon type={menu.icon} />
@@ -38,14 +61,12 @@ class NavLeft extends Component {
         })
     };
     render() {
-        const path = this.props.location.pathname;
-        const menus = this.createMenu(path);
         /*defaultOpenKeys展开那个组件的方法*/
-        return <Menu theme="dark" defaultSelectedKeys={[path]} defaultOpenKeys={[this.newKey]} mode="inline">
+        return <Menu theme="dark" selectedKeys={[this.state.selectedKey]} defaultOpenKeys={[this.newKey]} mode="inline">
             {
                 //在组件内 数组可以自己展开
                 //path跟里面的key地址相同 刷新是定在那里 defaultOpenKeys表示展开哪个组件
-                menus
+                this.menus
             }
         </Menu>
     }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button,message } from 'antd';
-
+import { connect } from 'react-redux';
 import { reqLogin } from '../../api/index'
 import logo from '../../assets/image/logo.png';
 import data from '../../utils/store';
 import './logo.less';
+import { setItem } from '../../utils/storage';
+import {saveUser} from "../../redux/action-creators";
 const Item = Form.Item;
 class Login extends Component {
     //以下函数时登入功能提交的实现
@@ -20,10 +22,11 @@ class Login extends Component {
                     .then((response) => {
                         console.log(response);
                         //下一步 储存数据到内存里面
-                        data.user = response;
+                        //data.user = response;
+                        this.props.saveUser(response);
                         //也把数据存到本地
                         //response是对象 对象转化为JSON字符串
-                        localStorage.setItem('user',JSON.stringify(response));
+                        setItem(response);
 
                         this.props.history.replace('/')
                     })
@@ -99,4 +102,10 @@ class Login extends Component {
         </div>
     }
 }
-export default Form.create()(Login);
+export default connect(
+    //登入前内存里面没有存数据 默认值是一个空对象 直接写null'
+    null,
+    { saveUser }
+)(
+    Form.create()(Login)
+)

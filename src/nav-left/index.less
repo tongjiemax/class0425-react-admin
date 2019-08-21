@@ -1,0 +1,39 @@
+.header-main{
+  width: 100%;
+  background-color: white;
+  .header-main-top{
+    width: 100%;
+    padding-right: 5px;
+    text-align: right;
+    border-bottom: 1px #1bcdcd solid;
+  }
+  .header-main-bottom{
+    height: 40px;
+    line-height: 40px;
+    .header-main-bottom-right{
+      float: right;
+      margin-right: 15px;
+      img{
+        margin: 0 10px;
+      }
+    }
+    h3{
+      float: left;
+      text-align: center;
+      /*text-align: center 水平居中的意思;*/
+      width: 400px;
+      position: relative;
+      &::after{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        content: '';
+        border-bottom: 20px transparent solid;
+        border-top: 20px white solid;
+        border-right: 20px transparent solid;
+        border-left: 20px transparent solid;
+      }
+    }
+  }
+}
