@@ -14,4 +14,8 @@ function user(prevState = {}, action) {
 }
 export default combineReducers({
     user
+    //把返回要更新的状态 放在store的state里面  其实就是
+    //state = {
+    // user： XXX}
+    //在高阶组件中 (state) => ({user:state.user})
 })

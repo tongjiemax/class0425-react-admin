@@ -11,7 +11,6 @@ const axiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: 10000,
 });
-
 //设置拦截器 在返回前处理信息
 axiosInstance.interceptors.response.use(
     (response) => {

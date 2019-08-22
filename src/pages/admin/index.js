@@ -126,4 +126,4 @@ export default connect(
     (state) => ({user: state.user}),
     { saveUser }
 )(Admin)
-//connect 使用高阶组件 使得组件中有状态  和 改变
+//connect 使用高阶组件 使得组件中有状态  和 产生对象的工厂函数来生成action对象

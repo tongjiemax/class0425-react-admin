@@ -6,6 +6,8 @@ import data from '../utils/store'
 import { withRouter } from 'react-router-dom';
 import { menuList } from '../config/index';
 import dayjs from 'dayjs';
+import {connect} from 'react-redux';
+import {removeUser} from '../redux/action-creators';
 import { reqWeather } from '../api/index'
 class HeaderMain extends Component {
     constructor(props) {
@@ -26,7 +28,10 @@ class HeaderMain extends Component {
             onOk: () => {
                 //移除本地数据
                 removeItem();
-                data.user = {};
+                //上面一行代码是移除本地浏览器保存的数据
+                //下面 要去掉redux里面的数据
+                this.props.removeUser();
+                //以上一行代码
                 //跳转到登入
                 this.props.history.replace('/login');
             },
@@ -107,4 +112,9 @@ class HeaderMain extends Component {
         </div>
     }
 }
-export default withRouter(HeaderMain);
+export default connect(
+    null,
+    {removeUser}
+)(
+    withRouter(HeaderMain)
+);

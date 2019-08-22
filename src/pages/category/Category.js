@@ -16,6 +16,7 @@ export default class Category extends Component {
         isShowSubCategory:false
     };
     addCategoryFormRef = React.createRef();
+    //通过ref可以拿到子组件的实例化对象 那么实例化对象上面的方法就可以通过addCategoryFormRef进行使用
     updateCategoryNameFormRef = React.createRef();
     columns = [
         {
@@ -41,6 +42,7 @@ export default class Category extends Component {
         //查看其子品类的回调函数
         //请求二级分类的数据
         //这里需要使用闭包 在闭包中保存category
+        //再一些情况下 可以使用闭包来保存外部变量的值 进行使用
         return () => {
             reqGetCategory(category._id)
                 .then((res) => {

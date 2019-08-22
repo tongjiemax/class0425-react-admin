@@ -67,18 +67,6 @@ class Login extends Component {
                             'username',
                             {
                             rules: [
-                               /* {
-                                    required: true,//不能为空
-                                    message: '请输入用户名'
-                                },
-                                {
-                                    min: 4,
-                                    message: '最小不能少于4'
-                                },
-                                {
-                                    max: 10,
-                                    message: '不能超过10'
-                                }*/
                                 {validator: this.validator}
                                 ],
                         })(
